@@ -28996,7 +28996,7 @@ function run() {
             let triggeringSha = process.env.GITHUB_SHA;
             let sha = undefined;
             let runNumber = 0;
-            let attemptNumber = undefined;
+            let attemptNumber = 0;
             if (runs.length > 0) {
                 for (const run of runs) {
                     core.debug(`This SHA: ${triggeringSha}`);
