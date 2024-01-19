@@ -59,7 +59,9 @@ async function run(): Promise<void> {
 
         let triggeringSha = process.env.GITHUB_SHA as string;
         let sha: string | undefined = undefined;
-        
+        let runNumber: number | 0 = 0;
+        let attemptNumber: number | undefined = undefined;
+
         if (runs.length > 0) {
             for (const run of runs) {
                 core.debug(`This SHA: ${triggeringSha}`);
@@ -82,6 +84,8 @@ async function run(): Promise<void> {
                     : `Using ${run.head_sha} from run ${run.html_url} as last successful CI run.`
                 );
                 sha = run.head_sha;
+                runNumber = run.run_number;
+                attemptNumber = run.run_attempt;
 
                 break;
             }
@@ -95,6 +99,9 @@ async function run(): Promise<void> {
         }
 
         core.setOutput('sha', sha);
+        core.setOutput('run_number', runNumber);
+        core.setOutput('attempt_number', attemptNumber);
+        
     } catch (error: any) {
         core.setFailed(error?.message);
     }
