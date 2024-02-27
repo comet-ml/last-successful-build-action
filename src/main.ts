@@ -61,7 +61,7 @@ async function run(): Promise<void> {
         let sha: string | undefined = undefined;
         let runNumber: number | 0 = 0;
         let attemptNumber: number | undefined = 0;
-        let html_url: undefined = undefined;
+        let html_url: string | undefined = undefined;
 
         if (runs.length > 0) {
             for (const run of runs) {
