@@ -101,6 +101,7 @@ async function run(): Promise<void> {
         core.setOutput('sha', sha);
         core.setOutput('run_number', runNumber);
         core.setOutput('attempt_number', attemptNumber);
+        core.setOutput('workflowId',workflowId);
 
     } catch (error: any) {
         core.setFailed(error?.message);
