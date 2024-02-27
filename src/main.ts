@@ -61,6 +61,7 @@ async function run(): Promise<void> {
         let sha: string | undefined = undefined;
         let runNumber: number | 0 = 0;
         let attemptNumber: number | undefined = 0;
+        let html_url: undefined = undefined;
 
         if (runs.length > 0) {
             for (const run of runs) {
@@ -86,6 +87,7 @@ async function run(): Promise<void> {
                 sha = run.head_sha;
                 runNumber = run.run_number;
                 attemptNumber = run.run_attempt;
+                html_url = run.html_url;
 
                 break;
             }
@@ -101,7 +103,7 @@ async function run(): Promise<void> {
         core.setOutput('sha', sha);
         core.setOutput('run_number', runNumber);
         core.setOutput('attempt_number', attemptNumber);
-        core.setOutput('workflowId',workflowId);
+        core.setOutput('html_url',html_url);
 
     } catch (error: any) {
         core.setFailed(error?.message);
