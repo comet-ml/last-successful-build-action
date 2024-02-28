@@ -28997,6 +28997,7 @@ function run() {
             let sha = undefined;
             let runNumber = 0;
             let attemptNumber = 0;
+            let html_url = undefined;
             if (runs.length > 0) {
                 for (const run of runs) {
                     core.debug(`This SHA: ${triggeringSha}`);
@@ -29016,6 +29017,7 @@ function run() {
                     sha = run.head_sha;
                     runNumber = run.run_number;
                     attemptNumber = run.run_attempt;
+                    html_url = run.html_url;
                     break;
                 }
             }
@@ -29029,6 +29031,7 @@ function run() {
             core.setOutput('sha', sha);
             core.setOutput('run_number', runNumber);
             core.setOutput('attempt_number', attemptNumber);
+            core.setOutput('html_url', html_url);
         }
         catch (error) {
             core.setFailed(error === null || error === void 0 ? void 0 : error.message);
